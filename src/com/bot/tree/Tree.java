@@ -35,8 +35,9 @@ public class Tree {
 
   public String getDescription() {
     StringBuilder sb = new StringBuilder();
-    sb.append(latin)
-      .append(" is also known as '")
+    sb.append("The tree with the latin name '")
+      .append(latin)
+      .append("' is also known as '")
       .append(swedish)
       .append("' in Swedish. In German it is called '")
       .append(german)
