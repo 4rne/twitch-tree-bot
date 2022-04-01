@@ -1,0 +1,5 @@
+/bin/
+.project
+twitch_secret_token
+*.class
+.env
