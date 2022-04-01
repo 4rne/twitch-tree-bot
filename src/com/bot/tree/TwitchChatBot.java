@@ -82,9 +82,9 @@ public class TwitchChatBot extends PircBot {
                 Pattern regex = Pattern.compile("\\W" + treeName + "\\W");
                 Pattern regexBeginning = Pattern.compile("(\\W)?" + treeName + "\\W");
                 Pattern regexEnd = Pattern.compile("\\W" + treeName + "(\\W)?");
-                Matcher regexMatcher = regex.matcher(str);
-                Matcher regexMatcherBeginning = regexBeginning.matcher(str);
-                Matcher regexMatcherEnd = regexEnd.matcher(str);
+                Matcher regexMatcher = regex.matcher(str.toLowerCase());
+                Matcher regexMatcherBeginning = regexBeginning.matcher(str.toLowerCase());
+                Matcher regexMatcherEnd = regexEnd.matcher(str.toLowerCase());
                 if(regexMatcher.find() || regexMatcherBeginning.find() || regexMatcherEnd.find() || str.equalsIgnoreCase(treeName)) {
                     return tree;
                 }
