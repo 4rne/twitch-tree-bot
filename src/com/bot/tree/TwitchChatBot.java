@@ -70,7 +70,7 @@ public class TwitchChatBot extends PircBot {
         {
             Tree t = containsTreeName(message);
             if(t != null) {
-                sendMessage(channel, "I heard you talking about a specific tree! " + t.getDescription());
+                sendMessage(channel, "🤖 🌳🌲 I overheard you talking about a tree! " + t.getDescription());
                 updateLastMessageTimestamp();
             }
         }
