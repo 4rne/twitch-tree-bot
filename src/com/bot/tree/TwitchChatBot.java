@@ -29,6 +29,7 @@ public class TwitchChatBot extends PircBot {
         trees.add(new Tree("fir", "Gran", "Tanne", "Abies"));
         trees.add(new Tree("pine", "Tall", "Kiefer", "Pinus"));
         trees.add(new Tree("birch", "Björk", "Birke", "Betula"));
+        trees.add(new Tree("linden", "Lind", "Linde", "Tilia"));
     }
 
     public boolean connect() {
