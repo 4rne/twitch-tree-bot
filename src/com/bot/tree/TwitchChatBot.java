@@ -79,14 +79,9 @@ public class TwitchChatBot extends PircBot {
 	private Tree containsTreeName(String str) {
 		for (Tree tree : trees) {
 			for (String name : tree.getNames()) {
-				String treeName = name.toLowerCase();
-				Pattern regex = Pattern.compile("\\W" + treeName + "\\W");
-				Pattern regexBeginning = Pattern.compile("(\\W)?" + treeName + "\\W");
-				Pattern regexEnd = Pattern.compile("\\W" + treeName + "(\\W)?");
+				Pattern regex = Pattern.compile("(^|\\W)" + name.toLowerCase() + "($|\\W)");
 				Matcher regexMatcher = regex.matcher(str.toLowerCase());
-				Matcher regexMatcherBeginning = regexBeginning.matcher(str.toLowerCase());
-				Matcher regexMatcherEnd = regexEnd.matcher(str.toLowerCase());
-				if(regexMatcher.find() || regexMatcherBeginning.find() || regexMatcherEnd.find() || str.equalsIgnoreCase(treeName)) {
+				if(regexMatcher.find()) {
 					return tree;
 				}
 			}
