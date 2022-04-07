@@ -1,12 +1,16 @@
 package com.bot.tree;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jibble.pircbot.*;
+import org.yaml.snakeyaml.*;
 
 public class TwitchChatBot extends PircBot {
 	private String token;
@@ -25,11 +29,31 @@ public class TwitchChatBot extends PircBot {
 	}
 
 	private void loadTrees() {
-		trees.add(new Tree("oak", "Ek", "Eiche", "Quercus"));
-		trees.add(new Tree("fir", "Gran", "Tanne", "Abies"));
-		trees.add(new Tree("pine", "Tall", "Kiefer", "Pinus"));
-		trees.add(new Tree("birch", "Björk", "Birke", "Betula"));
-		trees.add(new Tree("linden", "Lind", "Linde", "Tilia"));
+		Yaml yaml = new Yaml();
+		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("trees.yaml");
+		Map<String, Object> treesYaml = yaml.load(inputStream);
+		for (Map.Entry<String, Object> entry : treesYaml.entrySet()) {
+			trees.add(loadTree(entry));
+		}
+		System.exit(0);
+	}
+
+	private Tree loadTree(Map.Entry<String, Object> treeYaml) {
+		String latinName = treeYaml.getKey();
+			ArrayList<String> englishNames;
+			Object englishObject = ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("en");
+			if(englishObject.getClass() == (new ArrayList<String>().getClass())) {
+				englishNames = (ArrayList<String>) englishObject;
+			} else {
+				englishNames = new ArrayList<String>();
+				englishNames.add((String) englishObject);
+			}
+			String swedishName = (String) ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("se");
+			String germanName = (String) ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("de");
+			Tree t = new Tree();
+			t.setLatinName(latinName);
+			t.setEnglishNames(englishNames);
+			return t;
 	}
 
 	public boolean connect() {
@@ -79,7 +103,7 @@ public class TwitchChatBot extends PircBot {
 	private Tree containsTreeName(String str) {
 		for (Tree tree : trees) {
 			for (String name : tree.getNames()) {
-				Pattern regex = Pattern.compile("(^|\\W)" + name.toLowerCase() + "($|\\W)");
+				Pattern regex = Pattern.compile("(^|\\W)" + name.toLowerCase() + "($|\\W|\\w\\W)");
 				Matcher regexMatcher = regex.matcher(str.toLowerCase());
 				if(regexMatcher.find()) {
 					return tree;

@@ -1,36 +1,36 @@
 package com.bot.tree;
 
+import java.util.ArrayList;
+
 public class Tree {
-  private String english;
-  private String swedish;
-  private String german;
-  private String latin;
+  private String latinName;
+  private ArrayList<String> englishNames = new ArrayList<String>();
+  private ArrayList<String> swedishNames = new ArrayList<String>();
+  private ArrayList<String> germanNames = new ArrayList<String>();
 
-  public Tree(String english, String swedish, String german, String latin) {
-    this.english = english;
-    this.swedish = swedish;
-    this.german = german;
-    this.latin = latin;
+  public ArrayList<String> getEnglishNames() {
+    return englishNames;
   }
 
-  public String getEnglishName() {
-    return english;
+  public ArrayList<String> getSwedishNames() {
+    return swedishNames;
   }
 
-  public String getSwedishName() {
-    return swedish;
-  }
-
-  public String getGermanName() {
-    return german;
+  public ArrayList<String> getGermanNames() {
+    return germanNames;
   }
 
   public String getLatinName() {
-    return latin;
+    return latinName;
   }
 
-  public String[] getNames() {
-    return new String[] {english, swedish, german, latin};
+  public ArrayList<String> getNames() {
+    ArrayList<String> names = new ArrayList<String>();
+    names.addAll(getEnglishNames());
+    names.addAll(getGermanNames());
+    names.addAll(getSwedishNames());
+    names.add(getLatinName());
+    return names;
   }
 
   public String getDescription() {
@@ -45,5 +45,11 @@ public class Tree {
       .append(english)
       .append("'.");
     return sb.toString();
+  }
+
+  public void setLatinName(String latinName) {
+  }
+
+  public void setEnglishNames(ArrayList<String> englishNames) {
   }
 }
