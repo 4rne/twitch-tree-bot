@@ -1,5 +1,25 @@
+Abies:
+  de: Tanne
+  se: Gran
+  en: fir
 Betula:
   de: Birke
   se: Björk
   en: birch
-
+Pinus:
+  de:
+    - Kiefer
+    - Föhre
+  se: Tall
+  en: pine
+Quercus:
+  de: Eiche
+  se: Ek
+  en: oak
+Tilia:
+  de: Linde
+  se: Lind
+  en:
+    - lime
+    - basswood
+    - linden
