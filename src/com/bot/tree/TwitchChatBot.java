@@ -19,6 +19,8 @@ public class TwitchChatBot extends PircBot {
 	private static ArrayList<Tree> trees = new ArrayList<Tree>();
 	private LocalDateTime lastMessage = LocalDateTime.now().minusHours(42);
 
+	private Weather weather = new Weather();
+
 	public boolean init(String token, String[] channels) {
 		this.token = token;
 		this.channels = channels.clone();
@@ -45,8 +47,6 @@ public class TwitchChatBot extends PircBot {
 			ArrayList<String> germanNames = parseTreeNames(germanObject);
 			Object swedishObject = ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("se");
 			ArrayList<String> swedishNames = parseTreeNames(swedishObject);
-			// String swedishName = (String) ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("se");
-			// String germanName = (String) ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("de");
 			Tree t = new Tree();
 			t.setLatinName(latinName);
 			t.setEnglishNames(englishNames);
@@ -101,7 +101,7 @@ public class TwitchChatBot extends PircBot {
 
 	public void onMessage(String channel, String sender, String login, String hostname, String message)
 	{
-		if(LocalDateTime.now().minusSeconds(15).isAfter(lastMessage))
+		if(LocalDateTime.now().minusSeconds(30).isAfter(lastMessage))
 		{
 			Tree t = containsTreeName(message);
 			if(t != null) {
@@ -110,6 +110,9 @@ public class TwitchChatBot extends PircBot {
 			}
 			if(message.toLowerCase().contains("pripps") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "ArbPripps You cannot translate glorious Pripps Blå ArbPripps ");
+			}
+			if(message.toLowerCase().startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
+				sendMessage(channel, weather.toString());
 			}
 		}
 	}
