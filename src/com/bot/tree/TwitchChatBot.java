@@ -112,7 +112,7 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "ArbPripps You cannot translate glorious Pripps Blå ArbPripps ");
 			}
 			if(message.toLowerCase().startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
-				sendMessage(channel, weather.toString());
+				sendMessage(channel, weather.toReadableString());
 			}
 		}
 	}
