@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 public class Weather {
   private String temp;
   private String weather;
-	private LocalDateTime lastCheck = LocalDateTime.now().minusHours(42);
+	private LocalDateTime lastCheck = LocalDateTime.now().minusHours(0);
 
   public Weather() {
     parseWeather();
