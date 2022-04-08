@@ -6,6 +6,16 @@ Acer:
   de: Ahorn
   se: Lönn
   en: maple
+Aesculus:
+  de: Kastanie
+  se: Kastanj
+  en: 
+    - buckeye
+    - horse chestnut
+Alnus:
+  de: Erle
+  se: Al
+  en: alder
 Betula:
   de: Birke
   se: Björk
@@ -14,6 +24,10 @@ Fagus:
   de: Buche
   se: Bok
   en: beech
+Fraxinus:
+  de: Esche
+  se: Ask
+  en: ash
 Pinus:
   de:
     - Kiefer
@@ -34,6 +48,15 @@ Quercus:
   de: Eiche
   se: Ek
   en: oak
+Sorbus:
+  de:
+    - Mehlbeere
+    - Vogelbeere
+    - Eberesche
+  se:
+    - Rönn
+    - Oxel
+  en: rowan
 Tilia:
   de: Linde
   se: Lind
@@ -41,3 +64,10 @@ Tilia:
     - lime
     - basswood
     - linden
+Ulmus:
+  de: 
+    - Ulme
+    - Rüster
+    - Effe
+  se: Alm
+  en: elm
