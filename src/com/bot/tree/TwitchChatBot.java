@@ -108,6 +108,9 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "🤖 🌳🌲 I overheard you talking about a tree! " + t.getDescription());
 				updateLastMessageTimestamp();
 			}
+			if(message.toLowerCase().contains("pripps") && !sender.equalsIgnoreCase("Pseud0obot")) {
+				sendMessage(channel, "ArbPripps You cannot translate glorious Pripps Blå ArbPripps ");
+			}
 		}
 	}
 
