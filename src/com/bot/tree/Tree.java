@@ -8,23 +8,51 @@ public class Tree {
   private ArrayList<String> swedishNames = new ArrayList<String>();
   private ArrayList<String> germanNames = new ArrayList<String>();
 
-  public ArrayList<String> getEnglishNames() {
-    return englishNames;
+  public void setLatinName(String latinName) {
+    this.latinName = latinName;
   }
 
-  public ArrayList<String> getSwedishNames() {
-    return swedishNames;
+  public void setEnglishNames(ArrayList<String> englishNames) {
+    this.englishNames = new ArrayList<String>(englishNames);
   }
 
-  public ArrayList<String> getGermanNames() {
-    return germanNames;
+  public void setGermanNames(ArrayList<String> germanNames) {
+    this.germanNames = new ArrayList<String>(germanNames);
+  }
+
+  public void setSwedishNames(ArrayList<String> swedishNames) {
+    this.swedishNames = new ArrayList<String>(swedishNames);
   }
 
   public String getLatinName() {
     return latinName;
   }
 
-  public ArrayList<String> getNames() {
+  public ArrayList<String> getEnglishNames() {
+    return englishNames;
+  }
+
+  public ArrayList<String> getGermanNames() {
+    return germanNames;
+  }
+
+  public ArrayList<String> getSwedishNames() {
+    return swedishNames;
+  }
+
+  public String getEnglishNamestoString() {
+    return joinNames(englishNames);
+  }
+
+  public String getGermanNamestoString() {
+    return joinNames(germanNames);
+  }
+
+  public String getSwedishNamestoString() {
+    return joinNames(swedishNames);
+  }
+
+  public ArrayList<String> getAllNames() {
     ArrayList<String> names = new ArrayList<String>();
     names.addAll(getEnglishNames());
     names.addAll(getGermanNames());
@@ -36,20 +64,35 @@ public class Tree {
   public String getDescription() {
     StringBuilder sb = new StringBuilder();
     sb.append("The tree with the latin name '")
-      .append(latin)
-      .append("' is also known as '")
-      .append(swedish)
-      .append("' in Swedish. In German it is called '")
-      .append(german)
-      .append("' and in English it is referred to as '")
-      .append(english)
-      .append("'.");
+      .append(getLatinName())
+      .append("' is also known as ")
+      .append(getSwedishNamestoString())
+      .append(" in Swedish. In German it is called ")
+      .append(getGermanNamestoString())
+      .append(" and in English it is referred to as ")
+      .append(getEnglishNamestoString())
+      .append(".");
     return sb.toString();
   }
 
-  public void setLatinName(String latinName) {
-  }
-
-  public void setEnglishNames(ArrayList<String> englishNames) {
+  private String joinNames(ArrayList<String> namesList) {
+    if(namesList.size() == 1) {
+      return "'" + namesList.get(0) + "'";
+    } else if (namesList.size() >= 2) {
+      StringBuilder sb = new StringBuilder();
+      for(int i = 0; i < namesList.size() - 2; i++) {
+        sb.append("'");
+        sb.append(namesList.get(i));
+        sb.append("', ");
+      }
+      sb.append("'");
+      sb.append(namesList.get(namesList.size() - 2));
+      sb.append("' or '");
+      sb.append(namesList.get(namesList.size() - 1));
+      sb.append("'");
+      return sb.toString();
+    } else {
+      return "---";
+    }
   }
 }
