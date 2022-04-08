@@ -2,16 +2,34 @@ Abies:
   de: Tanne
   se: Gran
   en: fir
+Acer:
+  de: Ahorn
+  se: Lönn
+  en: maple
 Betula:
   de: Birke
   se: Björk
   en: birch
+Fagus:
+  de: Buche
+  se: Bok
+  en: beech
 Pinus:
   de:
     - Kiefer
     - Föhre
+    - Zirbe
   se: Tall
   en: pine
+Populus:
+  de:
+    - Pappel
+    - Espe
+  se: Asp
+  en: 
+    - aspen
+    - poplar
+    - cottonwood
 Quercus:
   de: Eiche
   se: Ek
