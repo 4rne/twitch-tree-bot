@@ -39,6 +39,7 @@ public class Weather {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    lastCheck = LocalDateTime.now();
     System.out.println("Parsed weather from openweathermap:");
     System.out.println(toReadableString());
   }
@@ -46,7 +47,6 @@ public class Weather {
   private void queueWeatherCheckIfNeeded() {
     if(LocalDateTime.now().minusMinutes(10).isAfter(lastCheck)) {
       parseWeather();
-      lastCheck = LocalDateTime.now();
     }
   }
 }
