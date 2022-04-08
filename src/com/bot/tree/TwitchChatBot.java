@@ -35,7 +35,6 @@ public class TwitchChatBot extends PircBot {
 		for (Map.Entry<String, Object> entry : treesYaml.entrySet()) {
 			trees.add(loadTree(entry));
 		}
-		System.exit(0);
 	}
 
 	private Tree loadTree(Map.Entry<String, Object> treeYaml) {
