@@ -30,7 +30,7 @@ public class Weather {
       url = new URL("https://api.openweathermap.org/data/2.5/weather?q=Uppsala,SE&units=metric&appid=" + System.getenv().get("OPENWEATHERMAP_API_TOKEN"));
       InputStreamReader reader = new InputStreamReader(url.openStream());
       Map weatherObject = new Gson().fromJson(reader, Map.class);
-      temp = ((Double) ((Map)weatherObject.get("main")).get("temp")).toString();
+      temp = ((Double) ((Map)weatherObject.get("main")).get("temp")).toString().replace('.', ',');
       weather = (String) ((Map) ((ArrayList<Object>)weatherObject.get("weather")).get(0)).get("main");
     } catch (MalformedURLException e) {
       e.printStackTrace();
