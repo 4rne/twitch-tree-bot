@@ -35,7 +35,7 @@ public class Weather {
       temp = Math.round(((Double) ((Map)weatherObject.get("main")).get("temp"))) + "";
       weather = (String) ((Map) ((ArrayList<Object>)weatherObject.get("weather")).get(0)).get("main");
       windspeed = Math.round(((Double) ((Map)weatherObject.get("wind")).get("speed")) * 3.6) + "";
-      direction = ((Integer) ((Map)weatherObject.get("wind")).get("deg")) + "";
+      direction = ((Map)weatherObject.get("wind")).get("deg") + "";
     } catch (MalformedURLException e) {
       e.printStackTrace();
     } catch (IOException e) {
