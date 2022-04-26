@@ -13,6 +13,8 @@ import com.google.gson.Gson;
 public class Weather {
   private String temp;
   private String weather;
+  private String windspeed;
+  private String direction;
 	private LocalDateTime lastCheck = LocalDateTime.now().minusHours(0);
 
   public Weather() {
@@ -21,7 +23,7 @@ public class Weather {
 
   public String toReadableString() {
     queueWeatherCheckIfNeeded();
-    return "Current weather in Uppsala region: " + weather + " at " + temp + "°C.";
+    return "Current weather in Uppsala region: " + weather + " at " + temp + "°C. Wind speed is " + windspeed + "km/h from " + direction + "°.";
   }
 
   private void parseWeather() {
@@ -32,6 +34,8 @@ public class Weather {
       Map weatherObject = new Gson().fromJson(reader, Map.class);
       temp = Math.round(((Double) ((Map)weatherObject.get("main")).get("temp"))) + "";
       weather = (String) ((Map) ((ArrayList<Object>)weatherObject.get("weather")).get(0)).get("main");
+      windspeed = Math.round(((Double) ((Map)weatherObject.get("wind")).get("speed")) * 3.6) + "";
+      direction = ((Integer) ((Map)weatherObject.get("wind")).get("deg")) + "";
     } catch (MalformedURLException e) {
       e.printStackTrace();
     } catch (IOException e) {
