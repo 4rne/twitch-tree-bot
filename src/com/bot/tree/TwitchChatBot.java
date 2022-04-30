@@ -142,7 +142,7 @@ public class TwitchChatBot extends PircBot {
 	private String estimate() {
 		try {
 			ArrayList<String> fullTeam = new ArrayList<String> (Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous"));
-			ArrayList<String> prices = new ArrayList<String> (Arrays.asList("over 9000", "too much", "a kidney", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420"));
+			ArrayList<String> prices = new ArrayList<String> (Arrays.asList("over 9000", "too much", "a kidney and 3", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420"));
 			ArrayList<String> jobTeam = new ArrayList<String>();
 			int teamSize = new Random().nextInt(fullTeam.size() - 1) + 1;
 			for(int i = 0; i < teamSize; i++) {
