@@ -140,23 +140,17 @@ public class TwitchChatBot extends PircBot {
 	}
 
 	private String estimate() {
-		try {
-			ArrayList<String> fullTeam = new ArrayList<String> (Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous"));
-			ArrayList<String> prices = new ArrayList<String> (Arrays.asList("over 9000", "too much", "a kidney and 3", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420"));
-			ArrayList<String> jobTeam = new ArrayList<String>();
-			int teamSize = new Random().nextInt(fullTeam.size() - 1) + 1;
-			for(int i = 0; i < teamSize; i++) {
-				int memberPosition = new Random().nextInt(fullTeam.size());
-				jobTeam.add(fullTeam.get(memberPosition));
-				fullTeam.remove(memberPosition);
-			}
-			String price = prices.get(new Random().nextInt(prices.size()));
-			return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kroner. Kappa";
+		ArrayList<String> fullTeam = new ArrayList<String> (Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous"));
+		ArrayList<String> prices = new ArrayList<String> (Arrays.asList("over 9000", "too much", "a kidney and 3", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420"));
+		ArrayList<String> jobTeam = new ArrayList<String>();
+		int teamSize = new Random().nextInt(fullTeam.size() - 1) + 1;
+		for(int i = 0; i < teamSize; i++) {
+			int memberPosition = new Random().nextInt(fullTeam.size());
+			jobTeam.add(fullTeam.get(memberPosition));
+			fullTeam.remove(memberPosition);
 		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return "broken";
-		}
+		String price = prices.get(new Random().nextInt(prices.size()));
+		return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kroner. Kappa";
 	}
 
 	private void updateLastMessageTimestamp() {
