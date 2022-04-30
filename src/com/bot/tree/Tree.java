@@ -1,6 +1,7 @@
 package com.bot.tree;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Tree {
   private String latinName;
@@ -41,15 +42,15 @@ public class Tree {
   }
 
   public String getEnglishNamestoString() {
-    return joinNames(englishNames);
+    return Helper.joinArrayList(englishNames, "or", "'", "---");
   }
 
   public String getGermanNamestoString() {
-    return joinNames(germanNames);
+    return Helper.joinArrayList(germanNames, "or", "'", "---");
   }
 
   public String getSwedishNamestoString() {
-    return joinNames(swedishNames);
+    return Helper.joinArrayList(swedishNames, "or", "'", "---");
   }
 
   public ArrayList<String> getAllNames() {
@@ -73,26 +74,5 @@ public class Tree {
       .append(getEnglishNamestoString())
       .append(".");
     return sb.toString();
-  }
-
-  private String joinNames(ArrayList<String> namesList) {
-    if(namesList.size() == 1) {
-      return "'" + namesList.get(0) + "'";
-    } else if (namesList.size() >= 2) {
-      StringBuilder sb = new StringBuilder();
-      for(int i = 0; i < namesList.size() - 2; i++) {
-        sb.append("'");
-        sb.append(namesList.get(i));
-        sb.append("', ");
-      }
-      sb.append("'");
-      sb.append(namesList.get(namesList.size() - 2));
-      sb.append("' or '");
-      sb.append(namesList.get(namesList.size() - 1));
-      sb.append("'");
-      return sb.toString();
-    } else {
-      return "---";
-    }
   }
 }

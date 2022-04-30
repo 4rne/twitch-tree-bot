@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -117,7 +118,7 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "🤖 " + weather.toReadableString());
 			}
 			if(msg.startsWith("!estimate") && !sender.equalsIgnoreCase("Pseud0obot")) {
-				sendMessage(channel, "🤖 I calculated all the costs of Vektor, Stepan and CrazyGroundie plus driving and tools. In total this job will cost " + (new Random().nextInt(5999) + 4000) + " Kroner. Kappa");
+				sendMessage(channel, "🤖 " + estimate());
 			}
 			if(!sender.equalsIgnoreCase("Pseud0obot") && (msg.startsWith("!commands") || msg.startsWith("!help"))) {
 				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages.");
@@ -136,6 +137,20 @@ public class TwitchChatBot extends PircBot {
 			}
 		}
 		return null;
+	}
+
+	private String estimate() {
+		ArrayList<String> fullTeam = (ArrayList<String>) Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous");
+		ArrayList<String> prices = (ArrayList<String>) Arrays.asList("over 9000", "too much", "a kidney", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420");
+		ArrayList<String> jobTeam = new ArrayList<String>();
+		int teamSize = new Random().nextInt(fullTeam.size() - 1) + 1;
+		for(int i = 0; i < teamSize; i++) {
+			int memberPosition = new Random().nextInt(fullTeam.size());
+			jobTeam.add(fullTeam.get(memberPosition));
+			fullTeam.remove(memberPosition);
+		}
+		String price = prices.get(new Random().nextInt(prices.size()));
+		return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kroner. Kappa";
 	}
 
 	private void updateLastMessageTimestamp() {
