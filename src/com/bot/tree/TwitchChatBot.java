@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -108,11 +109,18 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "🤖 🌳🌲 I overheard you talking about a tree! " + t.getDescription());
 				updateLastMessageTimestamp();
 			}
-			if(message.toLowerCase().contains("pripps") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			String msg = message.toLowerCase();
+			if(msg.contains("pripps") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "ArbPripps You cannot translate glorious Pripps Blå ArbPripps ");
 			}
-			if(message.toLowerCase().startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			if(msg.startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "🤖 " + weather.toReadableString());
+			}
+			if(msg.startsWith("!estimate") && !sender.equalsIgnoreCase("Pseud0obot")) {
+				sendMessage(channel, "🤖 I calculated all the costs of Vektor, Stepan and CrazyGroundie plus driving and tools. In total this job will cost " + (new Random().nextInt(5999) + 4000) + " Kroner. Kappa");
+			}
+			if(!sender.equalsIgnoreCase("Pseud0obot") && (msg.startsWith("!commands") || msg.startsWith("!help"))) {
+				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages.");
 			}
 		}
 	}
