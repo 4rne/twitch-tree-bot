@@ -1,7 +1,6 @@
 package com.bot.tree;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Tree {
   private String latinName;
