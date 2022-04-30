@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -140,17 +141,23 @@ public class TwitchChatBot extends PircBot {
 	}
 
 	private String estimate() {
-		ArrayList<String> fullTeam = (ArrayList<String>) Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous");
-		ArrayList<String> prices = (ArrayList<String>) Arrays.asList("over 9000", "too much", "a kidney", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420");
-		ArrayList<String> jobTeam = new ArrayList<String>();
-		int teamSize = new Random().nextInt(fullTeam.size() - 1) + 1;
-		for(int i = 0; i < teamSize; i++) {
-			int memberPosition = new Random().nextInt(fullTeam.size());
-			jobTeam.add(fullTeam.get(memberPosition));
-			fullTeam.remove(memberPosition);
+		try {
+			List<String> fullTeam = Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous");
+			List<String> prices = Arrays.asList("over 9000", "too much", "a kidney", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420");
+			List<String> jobTeam = new ArrayList<String>();
+			int teamSize = new Random().nextInt(fullTeam.size() - 1) + 1;
+			for(int i = 0; i < teamSize; i++) {
+				int memberPosition = new Random().nextInt(fullTeam.size());
+				jobTeam.add(fullTeam.get(memberPosition));
+				fullTeam.remove(memberPosition);
+			}
+			String price = prices.get(new Random().nextInt(prices.size()));
+			return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kroner. Kappa";
 		}
-		String price = prices.get(new Random().nextInt(prices.size()));
-		return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kroner. Kappa";
+		catch(Exception e) {
+			e.printStackTrace();
+			return "broken";
+		}
 	}
 
 	private void updateLastMessageTimestamp() {
