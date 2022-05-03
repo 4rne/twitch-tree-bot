@@ -150,7 +150,7 @@ public class TwitchChatBot extends PircBot {
 			fullTeam.remove(memberPosition);
 		}
 		String price = prices.get(new Random().nextInt(prices.size()));
-		return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kroner. Kappa";
+		return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kronor. Kappa";
 	}
 
 	private void updateLastMessageTimestamp() {
