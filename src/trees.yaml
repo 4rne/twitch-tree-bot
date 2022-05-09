@@ -1,6 +1,6 @@
 Abies:
   de: Tanne
-  se: Gran
+  se: Ädelgranssläktet
   en: fir
 Acer:
   de: Ahorn
@@ -28,6 +28,10 @@ Fraxinus:
   de: Esche
   se: Ask
   en: ash
+Picea:
+  de: Fichte
+  se: Gransläktet
+  en: spruce
 Pinus:
   de:
     - Kiefer
