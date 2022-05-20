@@ -114,13 +114,16 @@ public class TwitchChatBot extends PircBot {
 			if(msg.contains("pripps") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "ArbPripps You cannot translate glorious Pripps Blå ArbPripps ");
 			}
-			if(msg.startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			else if(msg.startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "🤖 " + weather.toReadableString());
 			}
-			if(msg.startsWith("!estimate") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			else if(msg.startsWith("!estimate") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "🤖 " + estimate());
 			}
-			if(!sender.equalsIgnoreCase("Pseud0obot") && (msg.startsWith("!commands") || msg.startsWith("!help"))) {
+			else if(msg.startsWith("!chipper") && !sender.equalsIgnoreCase("Pseud0obot")) {
+				sendMessage(channel, "🤖 We have got two chippers. One trusty Timberwolf and an always broken Jensen.");
+			}
+			else if(!sender.equalsIgnoreCase("Pseud0obot") && (msg.startsWith("!commands") || msg.startsWith("!help"))) {
 				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages.");
 			}
 		}
