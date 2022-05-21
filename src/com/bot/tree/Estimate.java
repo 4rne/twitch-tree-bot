@@ -70,7 +70,7 @@ public class Estimate {
 	}
 
 	private String realEstimateString(int realPrice, int discount, String people, String hours) {
-		return "This job will cost " + realPrice + " Kronor. But the customer only pays the discount price of " + discount + " Kronor. It will take " + hours + " hours with " + people  + "treeple.";
+		return "This job will cost " + realPrice + " Kronor. But the customer only pays the discount price of " + discount + " Kronor. It will take " + hours + " hours with " + people  + " treeple.";
 	}
 
   public String toString() {
