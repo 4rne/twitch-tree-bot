@@ -118,13 +118,16 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "🤖 " + weather.toReadableString());
 			}
 			else if(msg.startsWith("!estimate") && !sender.equalsIgnoreCase("Pseud0obot")) {
-				sendMessage(channel, "🤖 " + estimate());
+				sendMessage(channel, "🤖 " + new Estimate(msg).toString());
 			}
 			else if(msg.startsWith("!chipper") && !sender.equalsIgnoreCase("Pseud0obot")) {
 				sendMessage(channel, "🤖 We have got two chippers. One trusty Timberwolf and an always broken Jensen.");
 			}
+			else if(msg.startsWith("!chainsaw") && !sender.equalsIgnoreCase("Pseud0obot")) {
+				sendMessage(channel, "🤖 We have enough chainsaws.");
+			}
 			else if(!sender.equalsIgnoreCase("Pseud0obot") && (msg.startsWith("!commands") || msg.startsWith("!help"))) {
-				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages.");
+				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws.");
 			}
 		}
 	}
@@ -140,20 +143,6 @@ public class TwitchChatBot extends PircBot {
 			}
 		}
 		return null;
-	}
-
-	private String estimate() {
-		ArrayList<String> fullTeam = new ArrayList<String> (Arrays.asList("Stepan", "Vektor", "JP", "CrazyGroundie", "Bjurn", "Karlous"));
-		ArrayList<String> prices = new ArrayList<String> (Arrays.asList("over 9000", "too much", "a kidney and 3", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "69", "3.14159", "666", "42", "420"));
-		ArrayList<String> jobTeam = new ArrayList<String>();
-		int teamSize = new Random().nextInt(fullTeam.size() - 2) + 2;
-		for(int i = 0; i < teamSize; i++) {
-			int memberPosition = new Random().nextInt(fullTeam.size());
-			jobTeam.add(fullTeam.get(memberPosition));
-			fullTeam.remove(memberPosition);
-		}
-		String price = prices.get(new Random().nextInt(prices.size()));
-		return "I calculated all the costs of " + Helper.joinArrayList(jobTeam, "and", "", "") + " plus driving and tools. In total this job will cost " + price + " Kronor. Kappa";
 	}
 
 	private void updateLastMessageTimestamp() {
