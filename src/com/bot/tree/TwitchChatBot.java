@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +14,7 @@ import org.yaml.snakeyaml.*;
 
 public class TwitchChatBot extends PircBot {
 	private String token;
+	private String botName;
 	private String[] channels;
 
 	private static ArrayList<Tree> trees = new ArrayList<Tree>();
@@ -23,8 +22,9 @@ public class TwitchChatBot extends PircBot {
 
 	private Weather weather = new Weather();
 
-	public boolean init(String token, String[] channels) {
+	public boolean init(String token, String botName, String[] channels) {
 		this.token = token;
+		this.botName = botName;
 		this.channels = channels.clone();
 
 		loadTrees();
@@ -110,23 +110,26 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "🤖 🌳🌲 I overheard you talking about a tree! " + t.getDescription());
 				updateLastMessageTimestamp();
 			}
+			if(sender.equalsIgnoreCase(botName)) {
+				return;
+			}
 			String msg = message.toLowerCase();
-			if(msg.contains("pripps") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			if(msg.contains("pripps")) {
 				sendMessage(channel, "ArbPripps You cannot translate glorious Pripps Blå ArbPripps ");
 			}
-			else if(msg.startsWith("!weather") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			else if(msg.startsWith("!weather")) {
 				sendMessage(channel, "🤖 " + weather.toReadableString());
 			}
-			else if(msg.startsWith("!estimate") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			else if(msg.startsWith("!estimate")) {
 				sendMessage(channel, "🤖 " + new Estimate(msg).toString());
 			}
-			else if(msg.startsWith("!chipper") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			else if(msg.startsWith("!chipper")) {
 				sendMessage(channel, "🤖 We have got two chippers. One trusty Timberwolf and an always broken Jensen.");
 			}
-			else if(msg.startsWith("!chainsaw") && !sender.equalsIgnoreCase("Pseud0obot")) {
+			else if(msg.startsWith("!chainsaw")) {
 				sendMessage(channel, "🤖 We have enough chainsaws.");
 			}
-			else if(!sender.equalsIgnoreCase("Pseud0obot") && (msg.startsWith("!commands") || msg.startsWith("!help"))) {
+			else if(msg.startsWith("!commands") || msg.startsWith("!help")) {
 				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws.");
 			}
 		}

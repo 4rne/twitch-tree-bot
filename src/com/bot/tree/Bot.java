@@ -8,12 +8,17 @@ public class Bot {
             System.err.println("no TWITCH_API_TOKEN provided");
             System.exit(1);
         }
+        String botName = System.getenv().get("BOT_NAME");
+        if(botName == null) {
+            System.err.println("BOT_NAME not provided");
+            System.exit(1);
+        }
         String channels = System.getenv().get("JOIN_CHANNELS");
         if(channels == null) {
             System.err.println("JOIN_CHANNELS not provided");
             System.exit(1);
         }
         String[] channelList = channels.split(",");
-        bot.init(token, channelList);
+        bot.init(token, botName, channelList);
     }
 }
