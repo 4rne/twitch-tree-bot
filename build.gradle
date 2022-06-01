@@ -38,3 +38,11 @@ jar {
 		)
 	}
 }
+
+sourceSets {
+	main {
+		resources {
+			srcDirs "src/main/java"
+		}
+	}
+}
