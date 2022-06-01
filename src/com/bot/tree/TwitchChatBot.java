@@ -1,72 +1,32 @@
 package com.bot.tree;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HashMap;
 
 import org.jibble.pircbot.*;
-import org.yaml.snakeyaml.*;
 
 public class TwitchChatBot extends PircBot {
+	private HashMap<String, String> config = new HashMap<String, String>();
 	private String token;
 	private String botName;
 	private String[] channels;
+	private TreeLogic trees = new TreeLogic();
 
-	private static ArrayList<Tree> trees = new ArrayList<Tree>();
 	private LocalDateTime lastMessage = LocalDateTime.now().minusHours(42);
 
 	private Weather weather = new Weather();
 
-	public boolean init(String token, String botName, String[] channels) {
-		this.token = token;
-		this.botName = botName;
-		this.channels = channels.clone();
+	public TwitchChatBot(HashMap<String, String> config_options) {
+		this.config = config_options;
+  }
 
-		loadTrees();
+  public boolean init() {
+		botName = config.get("BOT_NAME");
+		token = config.get("TWITCH_API_TOKEN");
+		channels = config.get("JOIN_CHANNELS").split(",");
 
 		return connect();
-	}
-
-	private void loadTrees() {
-		Yaml yaml = new Yaml();
-		InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("trees.yaml");
-		Map<String, Object> treesYaml = yaml.load(inputStream);
-		for (Map.Entry<String, Object> entry : treesYaml.entrySet()) {
-			trees.add(loadTree(entry));
-		}
-	}
-
-	private Tree loadTree(Map.Entry<String, Object> treeYaml) {
-		String latinName = treeYaml.getKey();
-			Object englishObject = ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("en");
-			ArrayList<String> englishNames = parseTreeNames(englishObject);
-			Object germanObject = ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("de");
-			ArrayList<String> germanNames = parseTreeNames(germanObject);
-			Object swedishObject = ((LinkedHashMap<String, Object>) treeYaml.getValue()).get("se");
-			ArrayList<String> swedishNames = parseTreeNames(swedishObject);
-			Tree t = new Tree();
-			t.setLatinName(latinName);
-			t.setEnglishNames(englishNames);
-			t.setGermanNames(germanNames);
-			t.setSwedishNames(swedishNames);
-			System.out.println(t.getDescription());
-			return t;
-	}
-
-	private ArrayList<String> parseTreeNames(Object nameObject) {
-		ArrayList<String> names;
-		if(nameObject.getClass() == (new ArrayList<String>().getClass())) {
-			names = (ArrayList<String>) nameObject;
-		} else {
-			names = new ArrayList<String>();
-			names.add((String) nameObject);
-		}
-		return names;
 	}
 
 	public boolean connect() {
@@ -108,7 +68,7 @@ public class TwitchChatBot extends PircBot {
 			if(sender.equalsIgnoreCase(botName)) {
 				return;
 			}
-			Tree t = containsTreeName(message);
+			Tree t = trees.containsTreeName(message);
 			if(t != null) {
 				sendMessage(channel, "🤖 🌳🌲 I overheard you talking about a tree! " + t.getDescription());
 				updateLastMessageTimestamp();
@@ -133,19 +93,6 @@ public class TwitchChatBot extends PircBot {
 				sendMessage(channel, "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws.");
 			}
 		}
-	}
-
-	private Tree containsTreeName(String str) {
-		for (Tree tree : trees) {
-			for (String name : tree.getAllNames()) {
-				Pattern regex = Pattern.compile("(^|\\W)" + name.toLowerCase() + "($|\\W)");
-				Matcher regexMatcher = regex.matcher(str.toLowerCase());
-				if(regexMatcher.find()) {
-					return tree;
-				}
-			}
-		}
-		return null;
 	}
 
 	private void updateLastMessageTimestamp() {
