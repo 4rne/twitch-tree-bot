@@ -105,13 +105,13 @@ public class TwitchChatBot extends PircBot {
 	{
 		if(LocalDateTime.now().minusSeconds(30).isAfter(lastMessage))
 		{
+			if(sender.equalsIgnoreCase(botName)) {
+				return;
+			}
 			Tree t = containsTreeName(message);
 			if(t != null) {
 				sendMessage(channel, "🤖 🌳🌲 I overheard you talking about a tree! " + t.getDescription());
 				updateLastMessageTimestamp();
-			}
-			if(sender.equalsIgnoreCase(botName)) {
-				return;
 			}
 			String msg = message.toLowerCase();
 			if(msg.contains("pripps")) {
