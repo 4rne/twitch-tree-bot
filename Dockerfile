@@ -1,8 +1,14 @@
-FROM openjdk:16
+FROM gradle:jdk17-alpine AS build
 
-COPY lib/ /app/lib
-COPY  src/ /app/src
+WORKDIR /appbuild
+COPY . /appbuild
 
-RUN javac -cp /app/lib/pircbot.jar:/app/lib/snakeyaml-1.30.jar:/app/lib/gson-2.9.0.jar /app/src/com/bot/tree/*.java
+RUN gradle build
 
-CMD ["java", "-cp", "/app/lib/pircbot.jar:/app/lib/snakeyaml-1.30.jar:/app/lib/gson-2.9.0.jar:/app/src/:/app/", "com.bot.tree.Bot"]
+FROM openjdk:17
+
+WORKDIR /app
+
+COPY --from=build /appbuild/build/libs/TwitchChatBot-all.jar .
+
+CMD ["java", "-jar", "TwitchChatBot-all.jar"]
