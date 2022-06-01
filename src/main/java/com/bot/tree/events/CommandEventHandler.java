@@ -1,7 +1,6 @@
 package com.bot.tree.events;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import com.bot.tree.Estimate;
@@ -9,20 +8,15 @@ import com.bot.tree.Tree;
 import com.bot.tree.TreeLogic;
 import com.bot.tree.Weather;
 import com.github.philippheuer.events4j.simple.SimpleEventHandler;
-import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
-import com.github.twitch4j.helix.domain.UserList;
-import com.netflix.hystrix.HystrixCommand;
 
 public class CommandEventHandler {
     HashMap<String, String> config;
 	private LocalDateTime lastMessage = LocalDateTime.now().minusHours(42);
     private TreeLogic trees;
 	private Weather weather = new Weather();
-	private TwitchClient twitchClient;
 
-    public CommandEventHandler(TwitchClient tc, SimpleEventHandler eventHandler, HashMap<String, String> config) {
-        this.twitchClient = tc;
+    public CommandEventHandler(SimpleEventHandler eventHandler, HashMap<String, String> config) {
         this.config = config;
         trees = new TreeLogic();
         eventHandler.onEvent(ChannelMessageEvent.class, event -> onChannelMessage(event));

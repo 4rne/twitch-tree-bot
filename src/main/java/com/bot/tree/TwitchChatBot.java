@@ -42,6 +42,6 @@ public class TwitchChatBot {
 		new DonationEventHandler(eventHandler, config);
 		new FollowEventHandler(twitchClient, eventHandler, config);
 		new SubscriptionEventHandler(eventHandler, config);
-		new CommandEventHandler(twitchClient, eventHandler, config);
+		new CommandEventHandler(eventHandler, config);
 	}
 }
