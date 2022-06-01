@@ -3,3 +3,5 @@
 twitch_secret_token
 *.class
 .env
+.gradle/
+build/

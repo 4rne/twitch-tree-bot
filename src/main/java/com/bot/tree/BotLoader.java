@@ -16,7 +16,9 @@ public class BotLoader {
                 config_options.put(param, value);
             }
         }
+
         TwitchChatBot bot = new TwitchChatBot(config_options);
-        bot.init();
+        bot.registerEvents();
+        bot.start();
     }
 }
