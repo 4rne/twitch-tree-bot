@@ -48,6 +48,10 @@ Populus:
     - aspen
     - poplar
     - cottonwood
+Prunus:
+  de: Kirsche
+  en: cherry
+  se: Körsbärsträd
 Quercus:
   de: Eiche
   se: Ek
