@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class BotLoader {
     public static void main(String[] args) {
-        String params[] = new String[] {"TWITCH_API_TOKEN", "BOT_NAME", "JOIN_CHANNELS", "TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET", "OPENWEATHERMAP_API_TOKEN"};
+        String params[] = new String[] {"TWITCH_API_TOKEN", "BOT_NAME", "JOIN_CHANNELS", "TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET", "OPENWEATHERMAP_API_TOKEN", "TWITCH_ACCESS_TOKEN", "EVENT_CHANNEL_ID"};
         HashMap<String, String> config_options = new HashMap<String, String>();
 
         for (String param : params) {

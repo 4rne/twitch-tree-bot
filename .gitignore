@@ -5,3 +5,5 @@ twitch_secret_token
 .env
 .gradle/
 build/
+.vscode/
+client.log
