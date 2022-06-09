@@ -15,13 +15,13 @@ import com.github.twitch4j.pubsub.events.RewardRedeemedEvent;
 import com.bot.tree.events.*;
 
 public class TwitchChatBot {
-	private HashMap<String, String> config = new HashMap<String, String>();
+	public static HashMap<String, String> config = new HashMap<String, String>();
 	public static TwitchClient twitchClient;
 	private OAuth2Credential twitchCredentials;
 	private String userid;
 
 	public TwitchChatBot(HashMap<String, String> config_options) {
-		this.config = config_options;
+		TwitchChatBot.config = config_options;
 		twitchCredentials = new OAuth2Credential("twitch", config.get("TWITCH_ACCESS_TOKEN"));
 		userid = config.get("EVENT_CHANNEL_ID");
 
