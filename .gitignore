@@ -7,3 +7,4 @@ twitch_secret_token
 build/
 .vscode/
 client.log
+config.properties

@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class BotLoader {
     public static void main(String[] args) {
-        String params[] = new String[] {"TWITCH_API_TOKEN", "BOT_NAME", "JOIN_CHANNELS", "TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET", "OPENWEATHERMAP_API_TOKEN", "TWITCH_ACCESS_TOKEN", "EVENT_CHANNEL_ID"};
+        String params[] = new String[] {"TWITCH_API_TOKEN", "BOT_NAME", "JOIN_CHANNELS", "TWITCH_CLIENT_ID", "TWITCH_CLIENT_SECRET", "OPENWEATHERMAP_API_TOKEN", "TWITCH_ACCESS_TOKEN", "EVENT_CHANNEL_ID", "TWITCH_REFRESH_TOKEN"};
         HashMap<String, String> config_options = new HashMap<String, String>();
         ArrayList<String> missingParams = new ArrayList<String>();
 
@@ -28,5 +28,19 @@ public class BotLoader {
         TwitchChatBot bot = new TwitchChatBot(config_options);
         bot.registerEvents();
         bot.start();
+        Thread tokenRefreshThread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                while(true) {
+                    TokenRefresher.refreshToken();
+                    try {
+                        Thread.sleep(60 * 1000 * 60);;
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        });
+        tokenRefreshThread.start();
+
     }
 }

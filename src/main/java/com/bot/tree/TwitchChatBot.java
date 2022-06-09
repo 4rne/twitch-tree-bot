@@ -17,12 +17,13 @@ import com.bot.tree.events.*;
 public class TwitchChatBot {
 	public static HashMap<String, String> config = new HashMap<String, String>();
 	public static TwitchClient twitchClient;
+	public static Settings settings = new Settings().init();
 	private OAuth2Credential twitchCredentials;
 	private String userid;
 
 	public TwitchChatBot(HashMap<String, String> config_options) {
 		TwitchChatBot.config = config_options;
-		twitchCredentials = new OAuth2Credential("twitch", config.get("TWITCH_ACCESS_TOKEN"));
+		twitchCredentials = new OAuth2Credential("twitch", settings.getTwitchAccessToken());
 		userid = config.get("EVENT_CHANNEL_ID");
 
 		OAuth2Credential credential = new OAuth2Credential("twitch", config.get("TWITCH_API_TOKEN"));
