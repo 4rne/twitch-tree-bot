@@ -35,7 +35,7 @@ public class TokenRefresher {
         TwitchChatBot.settings.setProperty("twitch_access_token", (String) jsonResponse.get("access_token"));
         TwitchChatBot.settings.setProperty("twitch_refresh_token", (String) jsonResponse.get("refresh_token"));
         TwitchChatBot.settings.save();
-        System.out.println("Refreshed token! HTTP response: " + response.code() + " - " + responseBody);
+        // System.out.println("Refreshed token! HTTP response: " + response.code() + " - " + responseBody);
         return true;
       } else {
         System.out.println("Unable to refresh access token! Code: " + response.code() + " - " + responseBody);
