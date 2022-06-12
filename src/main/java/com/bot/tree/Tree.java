@@ -1,6 +1,7 @@
 package com.bot.tree;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Tree {
   private String latinName;
@@ -41,22 +42,22 @@ public class Tree {
   }
 
   public String getEnglishNamestoString() {
-    return Helper.joinArrayList(englishNames, "or", "'", "---");
+    return Helper.joinList(englishNames.stream().map(str -> str.replace("#", "")).collect(Collectors.toList()), "or", "'", "---");
   }
 
   public String getGermanNamestoString() {
-    return Helper.joinArrayList(germanNames, "or", "'", "---");
+    return Helper.joinList(germanNames.stream().map(str -> str.replace("#", "")).collect(Collectors.toList()), "or", "'", "---");
   }
 
   public String getSwedishNamestoString() {
-    return Helper.joinArrayList(swedishNames, "or", "'", "---");
+    return Helper.joinList(swedishNames.stream().map(str -> str.replace("#", "")).collect(Collectors.toList()), "or", "'", "---");
   }
 
   public ArrayList<String> getAllNames() {
     ArrayList<String> names = new ArrayList<String>();
-    names.addAll(getEnglishNames());
-    names.addAll(getGermanNames());
-    names.addAll(getSwedishNames());
+    names.addAll(getEnglishNames().stream().filter(str -> str.indexOf('#') == -1).collect(Collectors.toList()));
+    names.addAll(getGermanNames().stream().filter(str -> str.indexOf('#') == -1).collect(Collectors.toList()));
+    names.addAll(getSwedishNames().stream().filter(str -> str.indexOf('#') == -1).collect(Collectors.toList()));
     names.add(getLatinName());
     return names;
   }

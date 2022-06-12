@@ -24,6 +24,7 @@ public class TreeLogic {
 		for (Map.Entry<String, Object> entry : treesYaml.entrySet()) {
 			trees.add(loadTree(entry));
 		}
+		System.out.println(String.format("Loaded %s trees from config.", trees.size()));
 	}
 
   private Tree loadTree(Map.Entry<String, Object> treeYaml) {
@@ -39,7 +40,6 @@ public class TreeLogic {
     t.setEnglishNames(englishNames);
     t.setGermanNames(germanNames);
     t.setSwedishNames(swedishNames);
-    System.out.println(t.getDescription());
     return t;
 	}
 

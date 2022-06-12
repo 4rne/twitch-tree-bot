@@ -1,10 +1,15 @@
 package com.bot.tree;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Helper {
   public static String joinArrayList(ArrayList<String> namesList, String joinLastElement, String quotes, String defaultReturn) {
+    return joinList((List<String>) namesList, joinLastElement, quotes, defaultReturn);
+  }
+
+  public static String joinList(List<String> namesList, String joinLastElement, String quotes, String defaultReturn) {
     String strippedQuotes = Objects.toString(quotes, "");
     if(namesList.size() == 1) {
       return strippedQuotes + namesList.get(0) + strippedQuotes;
