@@ -28,6 +28,7 @@ public class BotLoader {
         TwitchChatBot bot = new TwitchChatBot(config_options);
         bot.registerEvents();
         bot.start();
+
         Thread tokenRefreshThread = new Thread(new Runnable(){
             @Override
             public void run() {
@@ -41,6 +42,5 @@ public class BotLoader {
             }
         });
         tokenRefreshThread.start();
-
     }
 }
