@@ -12,7 +12,12 @@ public class FollowEventHandler {
         );
 
         System.out.println(message);
-        String channel = UserInfo.fetchChannelName(event.getChannelId());
+        String channel;
+        try {
+            channel = TwitchChatBot.twitchClient.getChat().getChannelIdToChannelName().get(event.getChannelId());
+        } catch (Exception e) {
+            channel = UserInfo.fetchChannelName(event.getChannelId());
+        }
         TwitchChatBot.twitchClient.getChat().sendMessage(channel, message);
     }
 }
