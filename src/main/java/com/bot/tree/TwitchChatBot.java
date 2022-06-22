@@ -47,12 +47,13 @@ public class TwitchChatBot {
 
 	public void registerEvents() {
 		twitchClient.getPubSub().listenForChannelPointsRedemptionEvents(twitchCredentials, userid);
-		twitchClient.getEventManager().onEvent(RewardRedeemedEvent.class, RewardRedeemedEventHandler::handle);
 		twitchClient.getPubSub().listenForFollowingEvents(twitchCredentials, userid);
-		twitchClient.getEventManager().onEvent(FollowingEvent.class, FollowEventHandler::handle);
 		twitchClient.getPubSub().listenForHypeTrainEvents(twitchCredentials, userid);
-		twitchClient.getEventManager().onEvent(HypeTrainStartEvent.class, System.out::println);
 		twitchClient.getPubSub().listenForChannelSubGiftsEvents(twitchCredentials, userid);
+
+		twitchClient.getEventManager().onEvent(RewardRedeemedEvent.class, RewardRedeemedEventHandler::handle);
+		twitchClient.getEventManager().onEvent(FollowingEvent.class, FollowEventHandler::handle);
+		twitchClient.getEventManager().onEvent(HypeTrainStartEvent.class, System.out::println);
 		twitchClient.getEventManager().onEvent(ChannelSubGiftEvent.class, System.out::println);
 		twitchClient.getEventManager().onEvent(ChannelBitsEvent.class, System.out::println);
 		twitchClient.getEventManager().onEvent(ChannelSubscribeEvent.class, SubscriptionEventHandler::handle);
