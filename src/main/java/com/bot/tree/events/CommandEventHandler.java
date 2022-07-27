@@ -45,7 +45,7 @@ public class CommandEventHandler {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 " + new Estimate(msg).toString());
 			}
 			else if(msg.startsWith("!chipper")) {
-				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 We have got two chippers. One trusty Timberwolf and an always broken Jensen.");
+				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 We have got two chippers. One puny Timberwolf and a big strong Jensen.");
 			}
 			else if(msg.startsWith("!chainsaw")) {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 We have enough chainsaws.");
