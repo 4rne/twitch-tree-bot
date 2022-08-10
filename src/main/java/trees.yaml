@@ -9,7 +9,7 @@ Acer:
 Aesculus:
   de: Kastanie
   se: Kastanj
-  en: 
+  en:
     - buckeye
     - horse chestnut
 Alnus:
@@ -44,7 +44,7 @@ Populus:
     - Pappel
     - Espe
   se: Asp
-  en: 
+  en:
     - aspen
     - poplar
     - cottonwood
@@ -73,13 +73,13 @@ Tilia:
     - basswood
     - linden
 Ulmus:
-  de: 
+  de:
     - Ulme
     - Rüster
     - Effe
   se: Alm
   en: elm
-Willow:
+Salix:
   de: Weide
   en: willow
   se: Pil
