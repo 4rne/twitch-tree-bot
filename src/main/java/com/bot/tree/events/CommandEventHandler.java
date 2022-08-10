@@ -51,7 +51,7 @@ public class CommandEventHandler {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 We have enough chainsaws.");
 			}
 			else if(msg.startsWith("!doit")) {
-				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 There is nothing to it but to do it.");
+				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 ”There is nothing to it but to do it.“ — Basu");
 			}
 			else if(msg.startsWith("!commands") || msg.startsWith("!help")) {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws. Use !doit for some wise words by Basu.");
