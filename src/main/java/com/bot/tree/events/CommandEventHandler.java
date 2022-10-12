@@ -1,6 +1,7 @@
 package com.bot.tree.events;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import com.bot.tree.Estimate;
@@ -11,6 +12,8 @@ import com.github.philippheuer.events4j.simple.SimpleEventHandler;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
 
 public class CommandEventHandler {
+	static final String mods[] = {"arboriscoop", "ungoogleable", "johnmedh", "menkomigen", "amazing_bas_u", "thepseud0o"};
+
     HashMap<String, String> config;
 	private LocalDateTime lastMessage = LocalDateTime.now().minusHours(42);
     private TreeLogic trees;
@@ -55,6 +58,9 @@ public class CommandEventHandler {
 			}
 			else if(msg.startsWith("!commands") || msg.startsWith("!help")) {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws. Use !doit for some wise words by Basu.");
+			}
+			else if((msg.startsWith("!switch") || msg.startsWith("!live")) && Arrays.asList(mods).contains(event.getUser().getName().toLowerCase())) {
+				event.getTwitchChat().sendMessage(event.getChannel().getName(), "!fix Fixing the stream because of lagging ");
 			}
 		}
 	}
