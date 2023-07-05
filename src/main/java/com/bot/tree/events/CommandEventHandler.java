@@ -12,7 +12,8 @@ import com.github.philippheuer.events4j.simple.SimpleEventHandler;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
 
 public class CommandEventHandler {
-	static final String mods[] = {"arboriscoop", "ungoogleable", "johnmedh", "menkomigen", "amazing_bas_u", "thepseud0o"};
+	static final String mods[] = {"arboriscoop", "ungoogleable", "johnmedh", "menkomigen", "amazing_bas_u", "thepseud0o",
+	"maerklig", "goat_sam", "treenarchy", "runecarsnowpen", "paleontologistsva", "iv4nhoe", "cryptic_dayv"};
 
     HashMap<String, String> config;
 	private LocalDateTime lastMessage = LocalDateTime.now().minusHours(42);
