@@ -64,6 +64,7 @@ public class CommandEventHandler {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws. Use !doit for some wise words by Basu. Use !review to get a Google link to let everybody know how awesome Arboris is.");
 			}
 			else if((msg.startsWith("!switch") || msg.startsWith("!live")) && Arrays.asList(mods).contains(event.getUser().getName().toLowerCase())) {
+				System.out.println("!fix issued by " + event.getUser().getName());
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "!fix Fixing the stream because of lagging input sources. Just wait a few seconds and everything will be fine.");
 			}
 		}
