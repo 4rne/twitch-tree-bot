@@ -58,7 +58,7 @@ public class CommandEventHandler {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 ”There is nothing to it but to do it.“ — Basu");
 			}
 			else if(msg.startsWith("!review")) {
-				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 You've seen the awesome work we do. Please consider giving us a 5 star review on Google. https://g.page/r/CRz6T6CcVyr6EBM/review");
+				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 You've seen the awesome work we do. Please consider giving us a 5 star review on Google. https://bit.ly/arborisbetyg");
 			}
 			else if(msg.startsWith("!commands") || msg.startsWith("!help")) {
 				event.getTwitchChat().sendMessage(event.getChannel().getName(), "🤖 You can use the command !estimate to get an estimate on a tree job. Use !weather to get the current weather in Uppsala. Mention any tree name in a chat message and I will tell you how the tree is called in different languages. Use !chipper to get info about the chippers. Use !chainsaw to get info about chainsaws. Use !doit for some wise words by Basu. Use !review to get a Google link to let everybody know how awesome Arboris is.");
