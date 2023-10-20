@@ -12,7 +12,7 @@ public class Estimate {
   }
 
   public String random() {
-		ArrayList<String> fullTeam = new ArrayList<String> (Arrays.asList("Steban", "Vector", "JP", "CrazyGroundie", "Bjurn", "Gideon"));
+		ArrayList<String> fullTeam = new ArrayList<String> (Arrays.asList("Steban", "Vector", "JP", "CrazyGroundie", "Bjurn"));
 		ArrayList<String> prices = new ArrayList<String> (Arrays.asList("over 9000", "a lot", "too much", "a kidney and 3", "1", (new Random().nextInt(5999) + 4000) + "", "1337", "6969", "3.14159", "666", "420"));
 		ArrayList<String> jobTeam = new ArrayList<String>();
 		int teamSize = new Random().nextInt(fullTeam.size() - 2) + 2;
